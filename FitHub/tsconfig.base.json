@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@fithub/application": ["libs/src/index.ts"],
+      "@fithub/domain": ["domain/src/index.ts"],
+      "@fithub/libs/domain": ["domain/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
