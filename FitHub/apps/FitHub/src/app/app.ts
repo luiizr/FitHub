@@ -19,8 +19,12 @@ import { LoginTeste } from '../loginTeste/loginTeste';
 export class App {
   protected title = 'FitHub';
   private router = inject(Router);
+  abrirLogado = false
+  sumirBotao = false
   
   irParaLogin() {
+    this.abrirLogado = true
+    this.sumirBotao = true
     this.router.navigate(['/login']);
   }
 }
