@@ -15,9 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@fithub/application": ["libs/src/index.ts"],
-      "@fithub/domain": ["domain/src/index.ts"],
-      "@fithub/libs/domain": ["domain/src/index.ts"]
+      "@fithub/application": ["libs/application/src/index.ts"],
+      "@fithub/domain": ["libs/domain/src/index.ts"],
+      "@fithub/infrastructure": ["libs/infrastructure/src/index.ts"],
+      "@fithub/shared": ["libs/shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

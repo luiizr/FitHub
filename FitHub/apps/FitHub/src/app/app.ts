@@ -1,18 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
+import { LoginTeste } from '../loginTeste/loginTeste';
+
 
 @Component({
   imports: [
     CommonModule,
-    RouterOutlet
+    RouterOutlet,
+    LoginTeste
   ],
   selector: 'app-root',
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrls: ['./app.css'],
 })
-export class App {
-  constructor() {}
-  protected title = 'FitHub';
 
+export class App {
+  protected title = 'FitHub';
+  private router = inject(Router);
+  
+  irParaLogin() {
+    this.router.navigate(['/login']);
+  }
 }
