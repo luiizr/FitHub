@@ -14,7 +14,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@fit-hub/adapters": ["libs/adapters/src/index.ts"],
+      "@fit-hub/backendAdapters": ["libs/backendAdapters/src/index.ts"],
+      "@fit-hub/core": ["libs/core/src/index.ts"],
+      "@fit-hub/shareds": ["libs/shareds/src/index.ts"],
+      "@fit-hub/utils": ["libs/utils/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
