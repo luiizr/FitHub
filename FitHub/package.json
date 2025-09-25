@@ -3,7 +3,13 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "serve:front": "nx"
+    "serve:front": "nx serve FitHub",
+    "start": "nx serve FitHub",
+    "build": "nx build FitHub",
+    "build:prod": "nx build FitHub --configuration=production",
+    "test": "nx test FitHub",
+    "lint": "nx lint FitHub",
+    "e2e": "nx e2e FitHub-e2e"
   },
   "private": true,
   "dependencies": {
