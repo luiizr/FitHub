@@ -15,7 +15,7 @@
     ],
     "sharedGlobals": []
   },
-  "nxCloudId": "68d5392ca90dd22c6e54f4ca",
+  "nxCloudId": "68d53e0a089f05505e9eff46",
   "targetDefaults": {
     "@angular/build:application": {
       "cache": true,
@@ -65,6 +65,13 @@
       "linter": "eslint",
       "style": "css",
       "unitTestRunner": "jest"
+    },
+    "@nx/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nx/angular:component": {
+      "style": "css"
     }
   }
 }
