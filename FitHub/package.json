@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "serve:front": "nx serve FitHub",
-    "serve:all": "nx run-many -t=serve --parallel --projects=FitHub, backend",
+    "serve:all": "nx run-many -t=serve --parallel --projects=FitHub,backend",
     "serve:back": "nx serve backend",
     "start": "nx serve FitHub",
     "build": "nx build FitHub",

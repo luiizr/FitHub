@@ -2,10 +2,9 @@ import dotenv from "dotenv"
 dotenv.config();
 import express from 'express';
 import { db, SenhaCripto, RepositorioUsuarioPG } from '@fit-hub/backendAdapters';
-import { RegistrarUsuario } from '@fit-hub/core';
+import { RegistrarUsuario, LoginUsuario } from '@fit-hub/core';
 import RegistrarUsuarioController from './API/RegistrarUsuarioController';
 import LoginUsuarioController from "./API/LoginUsuarioController";
-import LoginUsuario from "libs/core/src/usuario/service/LoginUsuario";
 
 
 /*

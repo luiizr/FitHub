@@ -7,7 +7,7 @@ export default class LoginUsuarioController {
         servidor: Express,
         cdu: LoginUsuario
     ) {
-        servidor.post('api/login', async (req, res) => {
+        servidor.post('/api/login', async (req, res) => {
             try {
                 const usuario = await cdu.executar({
                     email: req.body.email,
