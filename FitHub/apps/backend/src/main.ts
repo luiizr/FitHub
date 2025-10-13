@@ -4,6 +4,8 @@ import express from 'express';
 import { db, SenhaCripto, RepositorioUsuarioPG } from '@fit-hub/backendAdapters';
 import { RegistrarUsuario } from '@fit-hub/core';
 import RegistrarUsuarioController from './API/RegistrarUsuarioController';
+import LoginUsuarioController from "./API/LoginUsuarioController";
+import LoginUsuario from "libs/core/src/usuario/service/LoginUsuario";
 
 
 /*
@@ -51,6 +53,7 @@ const repoUsuario = new RepositorioUsuarioPG()
 const provCripto = new SenhaCripto()
 const cduRegistrarUsuario = new RegistrarUsuario(repoUsuario, provCripto)
 
+const cduLoginUsuario = new LoginUsuario(repoUsuario, provCripto)
 /*
 =========================== 
       Rotas Abertas
@@ -58,3 +61,5 @@ const cduRegistrarUsuario = new RegistrarUsuario(repoUsuario, provCripto)
 */
 
 new RegistrarUsuarioController(app, cduRegistrarUsuario)
+
+new LoginUsuarioController(app, cduLoginUsuario)
