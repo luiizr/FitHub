@@ -1,10 +1,11 @@
 import dotenv from "dotenv"
 dotenv.config();
 import express from 'express';
-import { db, SenhaCripto, RepositorioUsuarioPG } from '@fit-hub/backendAdapters';
+import { db, SenhaCripto, ProvedorPostgreSQL } from '@fit-hub/backendAdapters';
 import { RegistrarUsuario, LoginUsuario } from '@fit-hub/core';
 import RegistrarUsuarioController from './API/RegistrarUsuarioController';
 import LoginUsuarioController from "./API/LoginUsuarioController";
+import { ColecaoUsuario } from "@fit-hub/adapters";
 
 
 /*
@@ -48,17 +49,18 @@ db.connect().then((connection) => {
       Adaptadores
 =========================== 
 */
-const repoUsuario = new RepositorioUsuarioPG()
+const provedorPG = new ProvedorPostgreSQL()
+const repoUsuario = new ColecaoUsuario(provedorPG)
 const provCripto = new SenhaCripto()
-const cduRegistrarUsuario = new RegistrarUsuario(repoUsuario, provCripto)
+const cduRegistrarUsuario = new RegistrarUsuario(repoUsuario) // Remove provCripto do caso de uso
+const cduLoginUsuario = new LoginUsuario(repoUsuario)
 
-const cduLoginUsuario = new LoginUsuario(repoUsuario, provCripto)
 /*
 =========================== 
       Rotas Abertas
 =========================== 
 */
 
-new RegistrarUsuarioController(app, cduRegistrarUsuario)
+new RegistrarUsuarioController(app, cduRegistrarUsuario, provCripto) // Passa provCripto para o controller
 
-new LoginUsuarioController(app, cduLoginUsuario)
+new LoginUsuarioController(app, cduLoginUsuario, provCripto, repoUsuario) // Passa provCripto para o controller
