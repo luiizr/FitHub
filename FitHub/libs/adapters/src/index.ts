@@ -14,3 +14,4 @@ export type {
     DirecaoOrdenacao
 } from './providers/ProvedorDados';
 export { default as ProvedorCriptografia } from './providers/ProvedorCriptografia';
+export { default as ProvedorHttpClient } from './providers/ProvedorHttpClient';

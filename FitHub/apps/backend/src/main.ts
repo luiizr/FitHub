@@ -1,10 +1,13 @@
 import dotenv from "dotenv"
 dotenv.config();
+
 import express from 'express';
-import { db, SenhaCripto, ProvedorPostgreSQL } from '@fit-hub/backendAdapters';
-import { RegistrarUsuario, LoginUsuario } from '@fit-hub/core';
+
 import RegistrarUsuarioController from './API/RegistrarUsuarioController';
 import LoginUsuarioController from "./API/LoginUsuarioController";
+
+import { RegistrarUsuario, LoginUsuario } from '@fit-hub/core';
+import { db, SenhaCripto, ProvedorPostgreSQL } from '@fit-hub/backendAdapters';
 import { ColecaoUsuario } from "@fit-hub/adapters";
 
 
@@ -64,3 +67,10 @@ const cduLoginUsuario = new LoginUsuario(repoUsuario)
 new RegistrarUsuarioController(app, cduRegistrarUsuario, provCripto) // Passa provCripto para o controller
 
 new LoginUsuarioController(app, cduLoginUsuario, provCripto, repoUsuario) // Passa provCripto para o controller
+
+
+/*
+=========================== 
+      Rotas Protegidas
+=========================== 
+*/

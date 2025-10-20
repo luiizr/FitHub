@@ -1,8 +1,7 @@
 import { Express } from 'express';
-import LoginUsuario from '../../../../libs/core/src/usuario/service/LoginUsuario';
-import Jwt from '../../../../libs/backendAdapters/src/lib/Jwt/Jwt';
-import ProvedorCriptografia from 'libs/adapters/src/providers/ProvedorCriptografia';
-import { ColecaoUsuario } from '@fit-hub/adapters';
+import { ColecaoUsuario, ProvedorCriptografia } from '@fit-hub/adapters';
+import { LoginUsuario } from '@fit-hub/core';
+import { Jwt } from '@fit-hub/backendAdapters';
 
 export default class LoginUsuarioController {
     constructor(
