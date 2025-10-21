@@ -1,12 +1,17 @@
 import { Route } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { RegistroComponent } from './pages/registro/registro.component';
+import { LoginComponent } from '../inicial/login/login.component';
+import { RegistroComponent } from '../inicial/registro/registro.component';
+import { LandingPageComponent } from '../inicial/landingPage/landingPage.component';
 
 export const appRoutes: Route[] = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '',
     pathMatch: 'full',
+  },
+  {
+    path: '',
+    component: LandingPageComponent,
   },
   {
     path: 'login',
@@ -18,6 +23,6 @@ export const appRoutes: Route[] = [
   },
   {
     path: '**',
-    redirectTo: '/login',
+    redirectTo: '',
   },
 ];

@@ -1,0 +1,13 @@
+{
+  "style": "css",
+  "packageManager": "npm",
+  "tailwind": {
+    "css": "apps/FitHub/src/styles.css",
+    "baseColor": "neutral",
+    "cssVariables": true
+  },
+  "aliases": {
+    "components": "libs/frontend/src/shareds",
+    "utils": "libs/utils/src/"
+  }
+}
