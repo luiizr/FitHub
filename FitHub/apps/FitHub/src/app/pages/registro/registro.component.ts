@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { UsuarioService } from 'libs/services/src/usuario/usuario.service';
-import { UsuarioDTO } from 'libs/adapters/src/dto/UsuarioDTO';
+
+import { Usuario } from '@fit-hub/core/src/usuario/model/Usuario.ts'
 
 interface UsuarioArgs {
   id?: string;

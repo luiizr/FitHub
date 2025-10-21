@@ -18,6 +18,7 @@
       "@fit-hub/adapters": ["libs/adapters/src/index.ts"],
       "@fit-hub/backendAdapters": ["libs/backendAdapters/src/index.ts"],
       "@fit-hub/core": ["libs/core/src/index.ts"],
+      "@fit-hub/frontend": ["libs/frontend/src/index.ts"],
       "@fit-hub/services": ["libs/services/src/index.ts"],
       "@fit-hub/shareds": ["libs/shareds/src/index.ts"],
       "@fit-hub/utils": ["libs/utils/src/index.ts"]
