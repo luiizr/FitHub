@@ -1,4 +1,4 @@
-export { default as ProvedorDados, default } from './providers/ProvedorDados';
+export type { default as ProvedorDados } from './providers/ProvedorDados';
 export { default as ColecaoUsuario } from './db/ColecaoUsuario';
 export type {
     Filtro,
@@ -13,5 +13,5 @@ export type {
     OperadorFiltro,
     DirecaoOrdenacao
 } from './providers/ProvedorDados';
-export { default as ProvedorCriptografia } from './providers/ProvedorCriptografia';
-export { default as ProvedorHttpClient } from './providers/ProvedorHttpClient';
+export type { default as ProvedorCriptografia } from './providers/ProvedorCriptografia';
+export type { default as ProvedorHttpClient } from './providers/ProvedorHttpClient';

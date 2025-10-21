@@ -1,4 +1,6 @@
 import { Route } from '@angular/router';
+import { LoginComponent } from './pages/login/login.component';
+import { RegistroComponent } from './pages/registro/registro.component';
 
 export const appRoutes: Route[] = [
   {
@@ -8,15 +10,11 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'login',
-    loadComponent: () =>
-      import('./pages/login/login.component').then((m) => m.LoginComponent),
+    component: LoginComponent,
   },
   {
     path: 'registro',
-    loadComponent: () =>
-      import('./pages/registro/registro.component').then(
-        (m) => m.RegistroComponent
-      ),
+    component: RegistroComponent,
   },
   {
     path: '**',

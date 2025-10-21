@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpUsuarioRepository } from '@fit-hub/adapters';
-import { UsuarioDTO } from '@fit-hub/adapters';
-import Usuario from '@fit-hub/core/src/usuario/model/Usuario';
+import { AxiosHttpClient } from '@fit-hub/backendAdapters';
+import { Usuario } from '@fit-hub/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  constructor(private httpUsuarioRepository: HttpUsuarioRepository) {}
+  // eslint-disable-next-line @angular-eslint/prefer-inject
+  constructor(private http: AxiosHttpClient) {}
 
   async registrarUsuario(usuarioDto: Usuario): Promise<void> {
     console.info('Registrando usuário via API:', usuarioDto);
@@ -24,16 +24,17 @@ export class UsuarioService {
 
     console.info('usuario montado, pronto para registrar', usuario)
 
-    return this.httpUsuarioRepository.registrarUsuario(usuario);
+    return this.http.post<void>('/usuarios/registrar', usuario);
   }
 
   async loginUsuario(email: string, senha: string): Promise<string> {
     console.info('Fazendo login via API:', email);
-    return this.httpUsuarioRepository.loginUsuario(email, senha);
+    const response = await this.http.post<{ token: string }>('/usuarios/login', { email, senha });
+    return response.token;
   }
 
-  async buscarUsuarioPorId(id: string): Promise<UsuarioDTO | null> {
-    const usuario = await this.httpUsuarioRepository.buscarUsuarioPorId(id);
+  async buscarUsuarioPorId(id: string): Promise<Usuario | null> {
+    const usuario = await this.http.get<Usuario>(`/usuarios/${id}`);
     if (!usuario) return null;
 
     return {
@@ -46,17 +47,17 @@ export class UsuarioService {
     };
   }
 
-  async buscarTodosUsuarios(): Promise<UsuarioDTO[]> {
-    const usuarios = await this.httpUsuarioRepository.buscarTodosUsuarios();
-    return usuarios.map((u) => ({
-      id: u.id,
-      nome: u.nome,
-      email: u.email,
-      peso: u.peso,
-      altura: u.altura,
-      idade: u.idade,
-    }));
-  }
+  // async buscarTodosUsuarios(): Promise<UsuarioDTO[]> {
+  //   const usuarios = await this.httpUsuarioRepository.buscarTodosUsuarios();
+  //   return usuarios.map((u) => ({
+  //     id: u.id,
+  //     nome: u.nome,
+  //     email: u.email,
+  //     peso: u.peso,
+  //     altura: u.altura,
+  //     idade: u.idade,
+  //   }));
+  // }
 
   logout(): void {
     localStorage.removeItem('authToken');

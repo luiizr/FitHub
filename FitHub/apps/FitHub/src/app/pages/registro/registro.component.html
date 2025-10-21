@@ -1,41 +1,5 @@
 <div class="registro-container">
   <div class="registro-card">
     <h2>Criar Conta</h2>
-    <form class="registro-form" (ngSubmit)="onSubmit()" #form="ngForm">
-      <div class="form-group">
-        <label for="nome">Nome Completo:</label>
-        <input type="text" id="nome" name="nome" required [(ngModel)]="registroData.nome">
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required [(ngModel)]="registroData.email">
-      </div>
-      <div class="form-group">
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" required [(ngModel)]="registroData.senha">
-      </div>
-      <div class="form-group">
-        <label for="confirmPassword">Confirmar Senha:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required [(ngModel)]="registroData.confirmPassword">
-      </div>
-
-      <div class="form-group">
-        <label for="peso">Peso (kg):</label>
-        <input type="number" id="peso" name="peso" required [(ngModel)]="registroData.peso">
-      </div>
-      <div class="form-group">
-        <label for="altura">Altura (cm):</label>
-        <input type="number" id="altura" name="altura" required [(ngModel)]="registroData.altura">
-      </div>
-      <div class="form-group">
-        <label for="idade">Idade:</label>
-        <input type="number" id="idade" name="idade" required [(ngModel)]="registroData.idade">
-      </div>
-
-      <button type="submit" class="registro-btn">Criar Conta</button>
-    </form>
-    <p class="login-link">
-      Já tem uma conta? <a routerLink="/login">Faça login aqui</a>
-    </p>
   </div>
 </div>

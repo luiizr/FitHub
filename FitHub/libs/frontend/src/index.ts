@@ -1,1 +1,1 @@
-export * from './lib/frontend-shared/frontend-shared';
+export { UsuarioService } from './services/usuario.service';

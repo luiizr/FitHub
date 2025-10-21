@@ -1,2 +1,2 @@
-export { default as CasoDeUso } from './shareds/CasoDeUso';
-export { default as Id } from './shareds/Id';
+export type { default as CasoDeUso } from './shareds/CasoDeUso';
+export type { default as Id } from './shareds/Id';
