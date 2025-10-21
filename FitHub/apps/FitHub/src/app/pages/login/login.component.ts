@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { UsuarioService } from 'libs/services/src/usuario/usuario.service';
+import { Router, RouterModule } from '@angular/router';
+
+import { UsuarioService } from '@fit-hub/frontend';
 
 
 @Component({
@@ -12,12 +13,8 @@ import { UsuarioService } from 'libs/services/src/usuario/usuario.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(private readonly userService: UsuarioService) {}
 
-  verUsuarios(): void {
-    const usuarios = this.userService.buscarTodosUsuarios();
-    console.log(usuarios);
-  }
-
+  private readonly userService = inject(UsuarioService);
+  private readonly router = inject(Router);
 
 }

@@ -1,6 +1,5 @@
-import ProvedorCriptografia from '../../../../adapters/src/providers/hashSenha/ProvedorCriptografia';
 import bcrypt from 'bcrypt';
-
+import { ProvedorCriptografia } from '@fit-hub/adapters';
 
 export default class SenhaCripto implements ProvedorCriptografia {
     

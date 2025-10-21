@@ -1,19 +1,31 @@
 import { Express } from 'express';
-import LoginUsuario from '../../../../libs/core/src/usuario/service/LoginUsuario';
-import ProvedorJwt from '../../../../libs/adapters/src/providers/Jwt/ProvedorJwt';
+import { ColecaoUsuario, ProvedorCriptografia } from '@fit-hub/adapters';
+import { LoginUsuario } from '@fit-hub/core';
+import { Jwt } from '@fit-hub/backendAdapters';
 
 export default class LoginUsuarioController {
     constructor(
         servidor: Express,
-        cdu: LoginUsuario
+        cdu: LoginUsuario,
+        provedorCripto: ProvedorCriptografia,
+        bdUsuario: ColecaoUsuario,
     ) {
         servidor.post('/api/login', async (req, res) => {
+            const usuarioExiste = await bdUsuario.BuscarUsuarioPorEmail(req.body.email)
+            if (!usuarioExiste) {
+                return res.status(404).send({ message: 'Usuário não encontrado' })
+            }
+            const senhaValida = await provedorCripto.comparar(req.body.senha, usuarioExiste.senha!)
+            if (!senhaValida) {
+                return res.status(401).send({ message: 'Senha inválida' })
+            }
+            
             try {
                 const usuario = await cdu.executar({
                     email: req.body.email,
                     senha: req.body.senha
                 })
-                const provedorJwt = new ProvedorJwt(process.env.JWT_SECRET)
+                const provedorJwt = new Jwt(process.env.JWT_SECRET)
 
                 res.status(200).send(provedorJwt.gerar(usuario))
             } catch (error) {

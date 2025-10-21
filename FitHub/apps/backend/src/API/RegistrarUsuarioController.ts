@@ -1,17 +1,20 @@
 import { Express } from 'express';
 import { RegistrarUsuario } from '@fit-hub/core';
+import { ProvedorCriptografia } from '@fit-hub/adapters';
 
 export default class RegistrarUsuarioController {
     constructor(
         servidor: Express,
-        cdu: RegistrarUsuario
+        cdu: RegistrarUsuario,
+        provedorCripto: ProvedorCriptografia,
     ) {
         servidor.post('/api/registrar', async (req, resp) => {
             try {
+                const senhaCripto = await provedorCripto.criptografar(req.body.senha)
                 await cdu.executar({
                     nome: req.body.nome,
                     email: req.body.email,
-                    senha: req.body.senha,
+                    senha: senhaCripto,
                     peso: req.body.peso,
                     altura: req.body.altura,
                     idade: req.body.idade,
