@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios, { AxiosInstance, AxiosError } from 'axios';
 import { ProvedorHttpClient } from '@fit-hub/adapters';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AxiosHttpClient implements ProvedorHttpClient {
 
   constructor() {
     this.client = axios.create({
-      baseURL: process.env['baseUrl'] || 'http://localhost:4000',
+      baseURL: environment.apiUrl,
       headers: {
         'Content-Type': 'application/json',
       },

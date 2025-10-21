@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AxiosHttpClient } from '@fit-hub/backendAdapters';
+import { AxiosHttpClient } from '../httpClient/RepositorioAxiosInstance';
 import { Usuario } from '@fit-hub/core';
 
 @Injectable({
@@ -24,12 +24,12 @@ export class UsuarioService {
 
     console.info('usuario montado, pronto para registrar', usuario)
 
-    return this.http.post<void>('/usuarios/registrar', usuario);
+    return this.http.post<void>('/api/registrar', usuario);
   }
 
   async loginUsuario(email: string, senha: string): Promise<string> {
     console.info('Fazendo login via API:', email);
-    const response = await this.http.post<{ token: string }>('/usuarios/login', { email, senha });
+    const response = await this.http.post<{ token: string }>('/api/login', { email, senha });
     return response.token;
   }
 

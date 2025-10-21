@@ -2,6 +2,7 @@ import dotenv from "dotenv"
 dotenv.config();
 
 import express from 'express';
+import cors from 'cors';
 
 import RegistrarUsuarioController from './API/RegistrarUsuarioController';
 import LoginUsuarioController from "./API/LoginUsuarioController";
@@ -20,6 +21,15 @@ import { ColecaoUsuario } from "@fit-hub/adapters";
 
 const porta = process.env.PORT || 4000;
 const app = express();
+
+// Configurar CORS para permitir requisições do frontend
+app.use(cors({
+  origin: 'http://localhost:4200', // URL do frontend Angular
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.listen(porta, () => {
