@@ -2,7 +2,7 @@
 <!-- Header -->
 <z-header 
   [zHeight]="60" 
-  class="sticky top-0 z-50 bg-primary/40 backdrop-blur-sm transition-all duration-500 ease-in-out">  
+  class="sticky top-0 z-50 bg-primary/40 backdrop-blur-sm transition-all duration-500 ease-in-out shadow-none border-b-0">  
   <div class="container mx-auto flex justify-between items-center h-full px-6">
     <!-- Logo -->
     <div class="flex items-center gap-3">
@@ -54,14 +54,14 @@
           <h1 class="text-6xl md:text-7xl font-bold text-white leading-tight">
             Liberte o seu potencial.
           </h1>
-          <p class="text-xl text-white max-w-2xl mx-auto">
+          <p class="text-xl text-[#a1a1ab] max-w-2xl mx-auto">
             A plataforma de fitness inteligente que se adapta a você. Monitore, analise e alcance resultados com o poder da IA.
           </p>
         </div>
         
           <button 
             (click)="goToRegister()"
-            class="px-8 py-4 bg-orange-600 text-white text-lg font-semibold rounded-xl hover:opacity-90 transition-all shadow-2xl hover:shadow-orange-200/30 hover:scale-105">
+            class="px-8 py-4 bg-orange-600 text-white text-lg font-semibold rounded-xl hover:opacity-90 transition-all shadow-2xl hover:shadow-orange-200/30 hover:scale-105 cursor-pointer">
             Comece Agora - Grátis
           </button>
       </div>
@@ -87,12 +87,13 @@
 
   <!-- Features Section -->
     <section id="features" class="container mx-auto px-6 py-20">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold mb-4">Recursos Principais</h2>
-        <p class="text-muted-foreground text-lg">Tudo que você precisa para sua jornada fitness</p>
+      <div class="text-center mb-12">
+        <h2 class="text-5xl text-white font-bold mb-4">Tudo Que Você Precisa Para <br>Ter Sucesso</h2>
+        <p class="text-muted-foreground text-lg">O FitHub combina tecnologia de ponta com um design centrado no usuário para ajudá-lo a atingir seus objetivos de fitness mais rapidamente</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
+        
         <!-- Feature 1 -->
         <div class="p-8 rounded-2xl border border-border bg-card hover:shadow-lg transition-all hover:border-primary/50">
           <div class="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6">
