@@ -28,11 +28,26 @@ import {
 })
 export class LandingPageComponent {
   private readonly router = inject(Router);
-  
+
+  isScrolled = false;
+
   // Ícones
   // readonly ArrowRight = Arrow;
   
-  
+  ngOnInit() {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', () => {
+        this.isScrolled = window.scrollY > 50;
+      });
+    }
+  }
+
+  ngOnDestroy() {
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('scroll', () => {});
+    }
+  }
+
 
   // Métodos para navegação
   goToLogin() {

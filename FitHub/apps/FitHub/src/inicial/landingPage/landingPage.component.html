@@ -1,105 +1,91 @@
 <z-layout class="bg-black m-0 p-0">
-  <!-- Header -->
-  <z-header [zHeight]="60" class="bg-black/50 backdrop-blur-lg sticky top-0 z-50">
-    <div class="container mx-auto flex justify-between items-center h-full px-6">
-      <!-- Logo -->
-      <div class="flex items-center gap-3">
-        <!-- <div class="w-10 h-10 rounded-lg flex items-center justify-center"> -->
-          <!-- <img> Para por o ícone do projeto aqui! -->
-        <!-- </div> -->
-        <h1 class="text-xl text-white font-bold">
-          FitHub
-        </h1>
+<!-- Header -->
+<z-header 
+  [zHeight]="60" 
+  class="sticky top-0 z-50 bg-primary/40 backdrop-blur-sm transition-all duration-500 ease-in-out">  
+  <div class="container mx-auto flex justify-between items-center h-full px-6">
+    <!-- Logo -->
+    <div class="flex items-center gap-3">
+      <h1 class="text-xl text-white font-bold">
+        FitHub
+      </h1>
 
-      <!-- Navigation Menu -->
-      <nav class="hidden ml-5 md:flex items-center gap-6">
-        <button (click)="scrollToSection('features')" class="text-lg text-gray-100 font-medium hover:text-gray-500 cursor-pointer">
-          Features
-        </button>
-        <!-- <button (click)="scrollToSection('about')" class="text-sm font-medium hover:text-primary cursor-pointer">
-          Sobre
-        </button> -->
-        <button (click)="scrollToSection('pricing')" class="text-lg text-gray-100 font-medium hover:text-gray-500 cursor-pointer">
-          Planos
-        </button>
-        <button (click)="scrollToSection('contact')" class="text-lg text-gray-100 font-medium hover:text-gray-500 cursor-pointer">
-          Sobre
-        </button>
-      </nav>
-      </div>
-
-      <!-- Action Buttons -->
-      <div class="flex items-center gap-4">
-        <button 
-          (click)="goToLogin()"
-          class="py-2 text-base font-semibold text-white hover:text-gray-500 cursor-pointer">
-          Entrar
-        </button>
-        <button 
-          (click)="goToRegister()"
-          class="px-6 py-2 bg-orange-600 from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:bg-orange-500 cursor-pointer">
-          <p class="text-semibold">Começar Grátis</p>
-          <!-- <lucide-icon [img]="HomeIcon" class="w-6 h-6 text-blue-500"></lucide-icon> -->
-        </button>
-      </div>
+    <!-- Navigation Menu -->
+    <nav class="hidden ml-5 md:flex items-center gap-6">
+      <button (click)="scrollToSection('features')" class="text-lg text-gray-100 font-medium hover:text-white transition-colors cursor-pointer">
+        Features
+      </button>
+      <button (click)="scrollToSection('pricing')" class="text-lg text-gray-100 font-medium hover:text-white transition-colors cursor-pointer">
+        Planos
+      </button>
+      <button (click)="scrollToSection('contact')" class="text-lg text-gray-100 font-medium hover:text-white transition-colors cursor-pointer">
+        Sobre
+      </button>
+    </nav>
     </div>
-  </z-header>
 
-  <!-- Content -->
-  <z-content class="p-0 bg-[#18181b]">
-    <!-- Hero Section -->
-    <section class="w-full h-screen bg-cover bg-center bg-no-repeat relative flex items-center justify-center m-0 p-0" style="background-image: url('https://images.unsplash.com/photo-1674600625236-ad76734fee0d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxmaXRuZXNzJTIwd29ya291dHxlbnwwfHx8fDE3NjA3MzE4NDh8MA&ixlib=rb-4.1.0&q=80&w=1080');">
-      <!-- Overlay escuro para melhorar legibilidade -->
-      <div class="absolute inset-0"></div>
-      
-      <div class="relative z-10 text-center px-6">
-        <div class="max-w-4xl mx-auto space-y-8">
-          <div class="space-y-4">
-            <span class="inline-block px-4 py-1 bg-primary/10 text-primary text-sm font-medium rounded-full">
-              🎉 Bem-vindo ao FitHub
-            </span>
-            <h1 class="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Transforme Seu Corpo e Mente
-            </h1>
-            <p class="text-xl text-white max-w-2xl mx-auto">
-              A plataforma completa para alcançar seus objetivos de fitness com treinos personalizados, 
-              acompanhamento de progresso e suporte profissional.
-            </p>
-          </div>
-          
-          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button 
-              (click)="goToRegister()"
-              class="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg font-semibold rounded-xl hover:opacity-90 transition-all shadow-2xl hover:shadow-blue-500/50 hover:scale-105">
-              Comece Agora - Grátis
-            </button>
-            <button 
-              (click)="scrollToSection('about')"
-              class="px-8 py-4 border-2 border-white text-white text-lg font-semibold rounded-xl hover:bg-white/10 transition-all">
-              Saiba Mais
-            </button>
-          </div>
+    <!-- Action Buttons -->
+    <div class="flex items-center gap-4">
+      <button 
+        (click)="goToLogin()"
+        class="py-2 text-base font-semibold text-white hover:text-gray-300 transition-colors cursor-pointer">
+        Entrar
+      </button>
+      <button 
+        (click)="goToRegister()"
+        class="px-6 py-2 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-500 transition-all cursor-pointer">
+        <p class="text-semibold">Começar Grátis</p>
+      </button>
+    </div>
+  </div>
+</z-header>
+
+<!-- Content -->
+<!-- Content -->
+<z-content class="p-0 bg-[#18181b]">
+  <!-- Hero Section -->
+  <section class="w-full h-screen bg-cover bg-center bg-no-repeat relative flex items-center justify-center m-0 p-0" style="background-image: url('https://images.unsplash.com/photo-1674600625236-ad76734fee0d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxmaXRuZXNzJTIwd29ya291dHxlbnwwfHx8fDE3NjA3MzE4NDh8MA&ixlib=rb-4.1.0&q=80&w=1080');">
+    <!-- Overlay com gradiente para dar destaque ao conteúdo -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+    
+    <div class="relative z-10 text-center px-6">
+      <div class="max-w-4xl mx-auto space-y-8">
+        <div class="space-y-4">
+          <h1 class="text-6xl md:text-7xl font-bold text-white leading-tight">
+            Liberte o seu potencial.
+          </h1>
+          <p class="text-xl text-white max-w-2xl mx-auto">
+            A plataforma de fitness inteligente que se adapta a você. Monitore, analise e alcance resultados com o poder da IA.
+          </p>
         </div>
+        
+          <button 
+            (click)="goToRegister()"
+            class="px-8 py-4 bg-orange-600 text-white text-lg font-semibold rounded-xl hover:opacity-90 transition-all shadow-2xl hover:shadow-orange-200/30 hover:scale-105">
+            Comece Agora - Grátis
+          </button>
+      </div>
 
-        <!-- Stats -->
-        <div class="grid grid-cols-3 gap-8 pt-12 max-w-2xl mx-auto">
-          <div>
-            <div class="text-4xl font-bold text-primary">10k+</div>
-            <div class="text-sm text-muted-foreground">Usuários Ativos</div>
-          </div>
-          <div>
-            <div class="text-4xl font-bold text-primary">500+</div>
-            <div class="text-sm text-muted-foreground">Treinos</div>
-          </div>
-          <div>
-            <div class="text-4xl font-bold text-primary">98%</div>
-            <div class="text-sm text-muted-foreground">Satisfação</div>
-          </div>
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-8 pt-12 max-w-2xl mx-auto">
+        <div>
+          <div class="text-4xl font-bold text-gray-300">10k+</div>
+          <div class="text-sm text-muted-foreground">Usuários Ativos</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-gray-300">500+</div>
+          <div class="text-sm text-muted-foreground">Treinos</div>
+        </div>
+        <div>
+          <div class="text-4xl font-bold text-gray-300">98%</div>
+          <div class="text-sm text-muted-foreground">Satisfação</div>
         </div>
       </div>
-    </section>
 
-    <!-- Features Section -->
+    </div>
+  </section>
+
+  <!-- Features Section -->
     <section id="features" class="container mx-auto px-6 py-20">
       <div class="text-center mb-16">
         <h2 class="text-4xl font-bold mb-4">Recursos Principais</h2>
