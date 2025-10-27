@@ -26,6 +26,12 @@ interface UsuarioArgs extends Usuario {
   styleUrls: ['./registro.component.css'],
 })
 export class RegistroComponent {
+  // Controle de etapas
+  currentStep = 1;
+  totalSteps = 2;
+
+  // URL da imagem de fundo
+  backgroundImageUrl = 'https://images.unsplash.com/photo-1606889464198-fcb18894cf50?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxneW0lMjB3b3Jrb3V0fGVufDB8fHx8MTc2MDc0MzI0N3ww&ixlib=rb-4.1.0&q=80&w=1080';
 
   // Dados base do formulário de registro
   registroData: UsuarioArgs = {
@@ -42,19 +48,35 @@ export class RegistroComponent {
   private readonly userService = inject(UsuarioService);
   private readonly router = inject(Router);
 
-  async onSubmit(): Promise<void> {
-    // validações básicas
-    if (
-      !this.registroData.nome ||
-      !this.registroData.email ||
-      !this.registroData.senha
-    ) {
-      alert('Preencha nome, email e senha');
-      return;
-    }
+  // Avançar para próxima etapa
+  nextStep(): void {
+    // Validação da etapa 1
+    if (this.currentStep === 1) {
+      if (!this.registroData.nome || !this.registroData.email || !this.registroData.senha || !this.registroData.confirmPassword) {
+        alert('Preencha todos os campos');
+        return;
+      }
 
-    if (this.registroData.senha !== this.registroData.confirmPassword) {
-      alert('As senhas não conferem');
+      if (this.registroData.senha !== this.registroData.confirmPassword) {
+        alert('As senhas não conferem');
+        return;
+      }
+
+      this.currentStep = 2;
+    }
+  }
+
+  // Voltar para etapa anterior
+  previousStep(): void {
+    if (this.currentStep > 1) {
+      this.currentStep--;
+    }
+  }
+
+  async onSubmit(): Promise<void> {
+    // validações da etapa 2
+    if (!this.registroData.idade || !this.registroData.altura || !this.registroData.peso) {
+      alert('Preencha todas as informações físicas');
       return;
     }
 
@@ -77,5 +99,10 @@ export class RegistroComponent {
       console.error(err);
       alert('Erro ao registrar usuário');
     }
+  }
+
+  // Navegação
+  goToLogin(): void {
+    this.router.navigate(['/login']);
   }
 }

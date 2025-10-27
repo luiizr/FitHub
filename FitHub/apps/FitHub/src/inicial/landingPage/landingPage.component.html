@@ -18,7 +18,7 @@
       <button (click)="scrollToSection('pricing')" class="text-lg text-gray-100 font-medium hover:text-white transition-colors cursor-pointer">
         Planos
       </button>
-      <button (click)="scrollToSection('contact')" class="text-lg text-gray-100 font-medium hover:text-white transition-colors cursor-pointer">
+      <button (click)="scrollToSection('about')" class="text-lg text-gray-100 font-medium hover:text-white transition-colors cursor-pointer">
         Sobre
       </button>
     </nav>
@@ -33,7 +33,7 @@
       </button>
       <button 
         (click)="goToRegister()"
-        class="px-6 py-2 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-500 transition-all cursor-pointer">
+        class="px-6 py-2 bg-[#e76515] text-white font-semibold rounded-lg hover:bg-orange-500 transition-all hover:scale-[1.02] cursor-pointer">
         <p class="text-semibold">Começar Grátis</p>
       </button>
     </div>
@@ -94,12 +94,36 @@
 
       <div class="grid md:grid-rows-3 gap-8">
         
-          <img src="crescer.png" alt="Crescer" class="w-full h-auto">
         <!-- Feature 1 -->
-        <div class="border-2 rounded-2xl p-6 bg-card hover:shadow-lg hover:scale-[1.02] transition-all">
+        <div class="border-2 border-gray-100/10 rounded-2xl p-6 bg-[#1a1a1d] hover:shadow-lg hover:scale-[1.02] transition-all">
           <div class="flex items-start gap-4">
             <div>
-              <h3 class="text-2xl font-bold mb-2 text-white">Volume de treino</h3>
+              <img src="crescer.png" alt="Crescer" class="w-12 h-12 mb-2">
+              <h3 class="text-3xl font-bold mb-2 text-white">Volume de treino</h3>
+              <p class="text-muted-foreground">
+                Saiba qual o volume ideal para o seu treino e como ajustá-lo para maximizar seus resultados.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-2 border-gray-100/10 rounded-2xl p-6 bg-[#1a1a1d] hover:shadow-lg hover:scale-[1.02] transition-all">
+          <div class="flex items-start gap-4">
+            <div>
+              <img src="meeting.png" alt="Crescer" class="w-12 h-12 mb-2">
+              <h3 class="text-3xl font-bold mb-2 text-white">Entre em uma comunidade</h3>
+              <p class="text-muted-foreground">
+                Conecte-se com outros usuários, compartilhe experiências e encontre apoio em sua jornada fitness.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-2 border-gray-100/10 rounded-2xl p-6 bg-[#1a1a1d] hover:shadow-lg hover:scale-[1.02] transition-all">
+          <div class="flex items-start gap-4">
+            <div>
+              <img src="ai.png" alt="Crescer" class="w-12 h-12 mb-2">
+              <h3 class="text-3xl font-bold mb-2 text-white">Volume de treino</h3>
               <p class="text-muted-foreground">
                 Saiba qual o volume ideal para o seu treino e como ajustá-lo para maximizar seus resultados.
               </p>
@@ -112,7 +136,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="container mx-auto px-6 py-20 bg-muted/30 rounded-3xl">
+    <section id="about" class="container mx-auto h-full w-full bg-muted/30">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="text-4xl font-bold mb-6">Sobre o FitHub</h2>
         <p class="text-lg text-muted-foreground leading-relaxed mb-8">
