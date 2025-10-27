@@ -23,7 +23,11 @@ export const verificarToken = (
     const token = authHeader.substring(7);
 
     // Verificar e decodificar o token
-    const provedorJwt = new Jwt(process.env.JWT_SECRET || 'seu-segredo-aqui');
+    // JWT_SECRET deve vir do .env - não aceita fallback inseguro
+    if (!process.env.JWT_SECRET) {
+      throw new Error('JWT_SECRET não configurado');
+    }
+    const provedorJwt = new Jwt(process.env.JWT_SECRET);
     const decoded = provedorJwt.obter(token);
 
     // Anexar dados decodificados ao request
