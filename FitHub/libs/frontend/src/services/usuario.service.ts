@@ -30,11 +30,12 @@ export class UsuarioService {
   async loginUsuario(email: string, senha: string): Promise<string> {
     console.info('Fazendo login via API:', email);
     const response = await this.http.post<{ token: string }>('/api/login', { email, senha });
+    console.info('Login bem-sucedido, token recebido:', response.token);
     return response.token;
   }
 
-  async buscarUsuarioPorId(id: string): Promise<Usuario | null> {
-    const usuario = await this.http.get<Usuario>(`/usuarios/${id}`);
+  async buscarUsuarioPorId(): Promise<Usuario | null> {
+    const usuario = await this.http.get<Usuario>(`/api/usuario`);
     if (!usuario) return null;
 
     return {

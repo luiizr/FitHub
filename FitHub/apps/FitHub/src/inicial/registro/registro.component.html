@@ -94,21 +94,21 @@
         <button
           type="button"
           (click)="nextStep()"
-          class="w-full py-2 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-500 transition-all shadow-lg hover:shadow-orange-600/50">
+          class="w-full py-2 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-500 transition-all shadow-lg hover:shadow-orange-600/50 cursor-pointer">
           Continue
         </button>
 
         <!-- Botão Sign up with Google -->
         <button
           type="button"
-          class="w-full py-2 bg-transparent border border-gray-700 text-white font-semibold rounded-lg hover:bg-gray-900 transition-all">
-          Sign up with Google
+          class="w-full py-2 bg-transparent border border-gray-700 text-white font-semibold rounded-lg hover:bg-gray-900 transition-all cursor-pointer">
+          Entre com o Google
         </button>
 
         <!-- Link para Login -->
   <p class="text-center text-gray-400 text-sm mt-4">
-          Already have an account? 
-          <button type="button" (click)="goToLogin()" class="text-orange-600 hover:text-orange-500 cursor-pointer font-semibold underline bg-transparent border-0 p-0">Log in</button>
+          Já possui uma conta? 
+          <button type="button" (click)="goToLogin()" class="text-orange-600 hover:text-orange-500 cursor-pointer font-semibold underline bg-transparent border-0 p-0">Entrar</button>
         </p>
       </form>
 
@@ -187,12 +187,12 @@
           <button
             type="button"
             (click)="previousStep()"
-            class="flex-1 py-2 bg-transparent border border-gray-700 text-white font-semibold rounded-lg hover:bg-gray-900 transition-all">
+            class="flex-1 py-2 bg-transparent border border-gray-700 text-white font-semibold rounded-lg hover:bg-gray-900 transition-all cursor-pointer">
             Voltar
           </button>
           <button
             type="submit"
-            class="flex-1 py-2 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-500 transition-all shadow-lg hover:shadow-orange-600/50">
+            class="flex-1 py-2 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-500 transition-all shadow-lg hover:shadow-orange-600/50 cursor-pointer">
             Criar Conta
           </button>
         </div>
@@ -215,7 +215,7 @@
       <div class="w-10 h-10 rounded-full bg-orange-600 flex items-center justify-center">
         <span class="text-white font-bold text-xl">F</span>
       </div>
-      <span class="text-white font-bold text-2xl">FitHub</span>
+      <button class="text-white font-bold text-2xl cursor-pointer" routerLink="landingPage">FitHub</button>
     </div>
     
     <!-- Frase motivacional -->

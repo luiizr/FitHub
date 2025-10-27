@@ -6,6 +6,7 @@ import cors from 'cors';
 
 import RegistrarUsuarioController from './API/RegistrarUsuarioController';
 import LoginUsuarioController from "./API/LoginUsuarioController";
+import UsuarioController from './API/UsuarioController';
 
 import { RegistrarUsuario, LoginUsuario } from '@fit-hub/core';
 import { db, SenhaCripto, ProvedorPostgreSQL } from '@fit-hub/backendAdapters';
@@ -84,3 +85,5 @@ new LoginUsuarioController(app, cduLoginUsuario, provCripto, repoUsuario) // Pas
       Rotas Protegidas
 =========================== 
 */
+
+new UsuarioController(app, repoUsuario)
