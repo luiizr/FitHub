@@ -41,43 +41,24 @@ export class AxiosHttpClient implements ProvedorHttpClient {
     );
   }
 
-  async post<T>(url: string, data: any): Promise<T> {
-    try {
-      const response = await this.client.post(url, data);
-      return response.data;
-    } catch (error) {
-      console.error('Erro no POST:', error);
-      throw error;
-    }
+  // Métodos HTTP sem logs de dados sensíveis
+  async post<T>(url: string, data: unknown): Promise<T> {
+    const response = await this.client.post(url, data);
+    return response.data;
   }
 
   async get<T>(url: string): Promise<T> {
-    try {
-      const response = await this.client.get(url);
-      return response.data;
-    } catch (error) {
-      console.error('Erro no GET:', error);
-      throw error;
-    }
+    const response = await this.client.get(url);
+    return response.data;
   }
 
-  async put<T>(url: string, data: any): Promise<T> {
-    try {
-      const response = await this.client.put(url, data);
-      return response.data;
-    } catch (error) {
-      console.error('Erro no PUT:', error);
-      throw error;
-    }
+  async put<T>(url: string, data: unknown): Promise<T> {
+    const response = await this.client.put(url, data);
+    return response.data;
   }
 
   async delete<T>(url: string): Promise<T> {
-    try {
-      const response = await this.client.delete(url);
-      return response.data;
-    } catch (error) {
-      console.error('Erro no DELETE:', error);
-      throw error;
-    }
+    const response = await this.client.delete(url);
+    return response.data;
   }
 }

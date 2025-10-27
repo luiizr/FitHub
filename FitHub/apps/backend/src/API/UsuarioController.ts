@@ -28,9 +28,8 @@ export default class UsuarioController {
         const usuarioSeguro = { ...usuario, senha: undefined };
 
         res.status(200).json(usuarioSeguro);
-      } catch (error) {
-        console.error('Erro ao buscar usuário:', error);
-        res.status(500).json({ message: 'Erro ao buscar usuário', error });
+      } catch {
+        res.status(500).json({ message: 'Erro ao buscar usuário' });
       }
     });
 
@@ -48,9 +47,9 @@ export default class UsuarioController {
         // TODO: Implementar lógica de atualização
 
         res.status(200).json({ message: 'Usuário atualizado com sucesso' });
-      } catch (error) {
-        console.error('Erro ao atualizar usuário:', error);
-        res.status(500).json({ message: 'Erro ao atualizar usuário', error });
+      } catch {
+        // ✅ Não loga erro (pode expor estrutura do banco)
+        res.status(500).json({ message: 'Erro ao atualizar usuário' });
       }
     });
   }

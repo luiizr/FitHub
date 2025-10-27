@@ -10,15 +10,14 @@ export default class RegistrarUsuario implements CasoDeUso<Usuario, void> {
     
     // Aqui, a gente recebe o usuário, e passamos as portas que iremos precisar nesse cdu
     async executar(usuario: Usuario): Promise<void> {
-        console.info(`Registrando usuário: ${JSON.stringify(usuario)}`);
+        // Validação sem expor senha em logs
         if (!usuario.senha) {
-            console.info("Senha do usuário está indefinida");
             throw new Error("Senha do usuário não pode ser indefinida")
         }
     
     const verificarSeUsuarioExiste = await this.repoUsuario.BuscarUsuarioPorEmail(usuario.email)
         if (verificarSeUsuarioExiste) {
-            console.info("Usuário já existe com esse email:", usuario.email);
+            // Não loga email para evitar enumeração de usuários
             throw new Error("Esse usuário ja existe")
         }
         
@@ -32,9 +31,7 @@ export default class RegistrarUsuario implements CasoDeUso<Usuario, void> {
         nome: usuario.nome,
         peso: usuario.peso,
     }
-    console.info(`Novo usuário a ser registrado: ${JSON.stringify(novoUsuario)}`);
+    // Não loga dados completos do usuário (contém senha)
     await this.repoUsuario.RegistrarUsuario(novoUsuario)
-
-        console.info(`${JSON.stringify(novoUsuario)}`)
     }
 }

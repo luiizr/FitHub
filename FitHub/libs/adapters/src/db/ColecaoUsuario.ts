@@ -15,7 +15,7 @@ export default class ColecaoUsuario implements RepositorioUsuario {
     constructor(private provedor: ProvedorDados) {}
 
     async RegistrarUsuario(usuario: Usuario): Promise<void> {
-        console.info('Chegando no salvar usuário para registrar:', usuario);
+        // ✅ Não loga dados do usuário (contém senha)
         
         // Monta o objeto sem ID para INSERT (deixa o banco gerar)
         const dadosUsuario: Record<string, unknown> = {

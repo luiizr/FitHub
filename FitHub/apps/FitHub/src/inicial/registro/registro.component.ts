@@ -57,6 +57,18 @@ export class RegistroComponent {
         return;
       }
 
+      // Validar formato do email
+      if (!this.isValidEmail(this.registroData.email)) {
+        alert('E-mail inválido');
+        return;
+      }
+
+      // Validar comprimento mínimo da senha
+      if (this.registroData.senha.length < 6) {
+        alert('A senha deve ter no mínimo 6 caracteres');
+        return;
+      }
+
       if (this.registroData.senha !== this.registroData.confirmPassword) {
         alert('As senhas não conferem');
         return;
@@ -64,6 +76,12 @@ export class RegistroComponent {
 
       this.currentStep = 2;
     }
+  }
+
+  // Método para validar formato de email
+  private isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   }
 
   // Voltar para etapa anterior
@@ -91,13 +109,19 @@ export class RegistroComponent {
     };
 
     try {
-      console.info("usuario:", usuarioDto)
+      // Não loga dados sensíveis (senha)
       await this.userService.registrarUsuario(usuarioDto);
+
+      // Limpar dados sensíveis após sucesso
+      this.registroData.senha = '';
+      this.registroData.confirmPassword = '';
+      this.registroData.email = '';
+      
       // após salvar, redireciona ao login
       this.router.navigate(['/login']);
-    } catch (err) {
-      console.error(err);
-      alert('Erro ao registrar usuário');
+    } catch {
+      // Mensagem genérica sem expor detalhes do erro
+      alert('Erro ao registrar usuário. Tente novamente.');
     }
   }
 

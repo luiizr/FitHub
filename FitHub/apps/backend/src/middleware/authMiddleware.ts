@@ -31,8 +31,7 @@ export const verificarToken = (
 
     // Continuar para próxima função
     next();
-  } catch (error) {
-    console.error('Erro ao verificar token:', error);
+  } catch {
     res.status(401).json({ message: 'Token inválido ou expirado' });
   }
 };

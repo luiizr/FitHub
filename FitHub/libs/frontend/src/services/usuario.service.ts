@@ -10,7 +10,7 @@ export class UsuarioService {
   constructor(private http: AxiosHttpClient) {}
 
   async registrarUsuario(usuarioDto: Usuario): Promise<void> {
-    console.info('Registrando usuário via API:', usuarioDto);
+    // Não loga dados sensíveis (senha, dados pessoais)
     
     // Mapear DTO para entidade de domínio
     const usuario: Usuario = {
@@ -22,15 +22,12 @@ export class UsuarioService {
       idade: usuarioDto.idade ?? 18,
     };
 
-    console.info('usuario montado, pronto para registrar', usuario)
-
     return this.http.post<void>('/api/registrar', usuario);
   }
 
   async loginUsuario(email: string, senha: string): Promise<string> {
-    console.info('Fazendo login via API:', email);
+    // Não loga credenciais ou tokens
     const response = await this.http.post<{ token: string }>('/api/login', { email, senha });
-    console.info('Login bem-sucedido, token recebido:', response.token);
     return response.token;
   }
 

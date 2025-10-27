@@ -33,7 +33,7 @@
   <p class="text-gray-400 mb-6 text-center">Enter your information to create your FitHub account</p>
 
       <!-- Etapa 1: Dados Básicos -->
-  <form *ngIf="currentStep === 1" class="space-y-4">
+  <form *ngIf="currentStep === 1" method="POST" autocomplete="off" class="space-y-4">
         <!-- Nome Completo -->
         <div>
           <label for="nome" class="block text-sm font-medium text-white mb-1">Full Name</label>
@@ -43,6 +43,7 @@
             name="nome"
             [(ngModel)]="registroData.nome"
             required
+            autocomplete="name"
             placeholder="John Doe"
             class="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600 transition-colors"
           />
@@ -57,6 +58,7 @@
             name="email"
             [(ngModel)]="registroData.email"
             required
+            autocomplete="email"
             placeholder="m@example.com"
             class="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600 transition-colors"
           />
@@ -71,6 +73,7 @@
             name="senha"
             [(ngModel)]="registroData.senha"
             required
+            autocomplete="new-password"
             placeholder="••••••••"
             class="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600 transition-colors"
           />
@@ -85,6 +88,7 @@
             name="confirmPassword"
             [(ngModel)]="registroData.confirmPassword"
             required
+            autocomplete="new-password"
             placeholder="••••••••"
             class="w-full px-3 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600 transition-colors"
           />
@@ -113,7 +117,7 @@
       </form>
 
       <!-- Etapa 2: Informações Físicas -->
-  <form *ngIf="currentStep === 2" (ngSubmit)="onSubmit()" class="space-y-4">
+  <form *ngIf="currentStep === 2" method="POST" autocomplete="off" (ngSubmit)="onSubmit()" class="space-y-4">
   <div class="grid grid-cols-2 gap-2">
           <!-- Idade -->
           <div>

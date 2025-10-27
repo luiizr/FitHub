@@ -33,8 +33,7 @@ export class DashboardComponent implements OnInit {
       } else {
         this.erro = 'Usuário não encontrado';
       }
-    } catch (err) {
-      console.error('Erro ao carregar dados do usuário:', err);
+    } catch {
       this.erro = 'Erro ao carregar dados do usuário';
     } finally {
       this.carregando = false;

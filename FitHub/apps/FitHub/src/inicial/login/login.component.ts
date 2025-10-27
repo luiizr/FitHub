@@ -29,25 +29,44 @@ export class LoginComponent {
     this.carregando = true;
 
     try {
+      // Validação
       if (!this.email || !this.senha) {
         this.erro = 'Preencha todos os campos';
         return;
       }
 
+      // Validar formato de email
+      if (!this.isValidEmail(this.email)) {
+        this.erro = 'E-mail inválido';
+        return;
+      }
+
       const token = await this.userService.loginUsuario(this.email, this.senha);
-      console.info('Token recebido:', token);
+      
       if (token) {
-        console.info('Armazenando token e redirecionando...');
+        // Armazenar token (sem logar)
         localStorage.setItem('authToken', token);
-        console.info('Navegando para o dashboard');
+        
+        // Limpar dados sensíveis (boas práticas)
+        this.email = '';
+        this.senha = '';
+        
+        // Redirecionar
         this.router.navigate(['/dashboard']);
       }
     } catch (err) {
-      console.error('Erro ao fazer login:', err);
-      this.erro = err instanceof Error ? err.message : 'Erro ao fazer login';
+      console.error('Erro ao fazer login');
+      // NUNCA expor detalhes da erro (pode ser JWT inválido, etc)
+      this.erro = 'Email ou senha incorretos';
     } finally {
       this.carregando = false;
     }
+  }
+
+  // Helper: Validar email
+  private isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
   }
 
 }
