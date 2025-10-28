@@ -23,7 +23,6 @@ export default class ColecaoPostagem implements RepositorioPostagem {
         
         // ✅ Se tem id, é update; se não tem, é insert
         if (postagem.id) {
-            console.info('é update', dadosPostagem, postagem.id);
             await this.provedor.salvar('postagens', dadosPostagem, postagem.id);
         } else {
             await this.provedor.salvar('postagens', dadosPostagem);

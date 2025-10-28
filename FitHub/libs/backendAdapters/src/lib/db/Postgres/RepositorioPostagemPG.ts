@@ -9,7 +9,6 @@ export default class RepositorioPostagemPG implements ProvedorDados {
         id?: Identificador
     ): Promise<T> {
         // ✅ Filtrar campos undefined/null para não enviar ao banco
-        console.info('Salvando entidade no PG:', entidade, 'com id:', id);
         const entidadeLimpa: Record<string, unknown> = {};
         Object.keys(entidade).forEach(key => {
             if (entidade[key] !== undefined && entidade[key] !== null) {

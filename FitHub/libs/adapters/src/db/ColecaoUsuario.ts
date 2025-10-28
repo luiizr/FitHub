@@ -2,6 +2,7 @@ import { RepositorioUsuario } from '@fit-hub/core';
 import ProvedorDados, { Filtro } from '../providers/ProvedorDados';
 
 export interface Usuario {
+    id: any;
     nome: string;
     email: string;
     senha: string;

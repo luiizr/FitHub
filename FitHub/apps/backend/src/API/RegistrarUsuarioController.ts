@@ -9,7 +9,6 @@ export default class RegistrarUsuarioController {
         provedorCripto: ProvedorCriptografia,
     ) {
         servidor.post('/api/registrar', async (req, resp) => {
-            console.info('RegistrarUsuarioController - dados recebidos:', req.body);
             try {
                 const senhaCripto = await provedorCripto.criptografar(req.body.senha)
                 await cdu.executar({

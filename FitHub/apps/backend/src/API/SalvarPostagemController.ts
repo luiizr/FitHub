@@ -9,7 +9,6 @@ export default class SalvarPostagemController {
     ) {
         servidor.post('/api/salvarPostagem', verificarToken, async (req: AuthRequest, res: Response) => {
             try {
-                // ✅ Só inclui campos que existem (não undefined/null)
                 const postagem: any = {
                     conteudoEscrito: req.body.conteudoEscrito,
                     userId: req.body.userId,
@@ -22,9 +21,6 @@ export default class SalvarPostagemController {
                 if (req.body.curtidas && req.body.curtidas.length > 0) postagem.curtidas = req.body.curtidas;
                 if (req.body.id) postagem.id = req.body.id;
                 
-                // ✅ Não inclui dataCriacao - banco gera automaticamente
-                // ✅ Não inclui id se for criação - banco gera automaticamente
-                console.info('SalvarPostagemController - postagem recebida:', postagem);
                 const resultado = await cdu.executar(postagem);
                 await cdu.executar(postagem)
                 res.status(201).json({ message: 'Postagem salva com sucesso', resultado });
