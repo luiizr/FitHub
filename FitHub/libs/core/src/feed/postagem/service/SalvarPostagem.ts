@@ -8,26 +8,29 @@ export default class CriarPostagem implements CasoDeUso<Postagem, void> {
     ) {}
     
     async executar(dados: Postagem): Promise<void> {
+        console.info('Executando SalvarPostagem com dados:', dados);
         // Verificar se todos os dados estão condizentes
         if (dados.id) {
-            // ID Fornecido, então estará atualizando os dados da Postagem
-            const PostagemExistente = await this.repoPostagem.BuscarPostagemPorId(dados.id)
-            if (!PostagemExistente) {
-                throw new Error("Postagem não encontrada para atualização")
-            }
-
+            console.info('Postagem tem id, vamos buscar a postagem');
+                const PostagemExistente = await this.repoPostagem.BuscarPostagemPorId(dados.id)
+                    if (!PostagemExistente) {
+                        throw new Error("Postagem não encontrada para atualização");
+                    }
+            console.info('Postagem existente encontrada:', PostagemExistente);
             // Atualizar a postagem existente
             const PostagemAtualizada: Postagem = {
                 ...PostagemExistente,
-                conteudoEscrito: dados.conteudoEscrito,
-                dataAlteracao: new Date(), // ✅ Sempre atualiza a data de alteração
+                userId: dados.userId,
+                ...(dados.conteudoEscrito && { conteudoEscrito: dados.conteudoEscrito }),
+                ...(dados.conteudoMidia && { conteudoMidia: dados.conteudoMidia }),
+                dataAlteracao: new Date(),
             }
-            
+            console.info('Atualizando postagem com dados:', PostagemAtualizada);
             // ✅ Só atualiza conteudoMidia se vier preenchido
             if (dados.conteudoMidia !== undefined) {
                 PostagemAtualizada.conteudoMidia = dados.conteudoMidia;
             }
-            
+            console.info('Postagem atualizada para salvar:', PostagemAtualizada);
             await this.repoPostagem.SalvarPostagem(PostagemAtualizada)
             return;
         }

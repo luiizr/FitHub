@@ -23,6 +23,7 @@ export default class ColecaoPostagem implements RepositorioPostagem {
         
         // ✅ Se tem id, é update; se não tem, é insert
         if (postagem.id) {
+            console.info('é update', dadosPostagem, postagem.id);
             await this.provedor.salvar('postagens', dadosPostagem, postagem.id);
         } else {
             await this.provedor.salvar('postagens', dadosPostagem);
@@ -31,10 +32,11 @@ export default class ColecaoPostagem implements RepositorioPostagem {
     DeletarPostagem(id: string): Promise<void> {
         throw new Error('Method not implemented.');
     }
-    BuscarPostagemPorId(id: string): Promise<Postagem | null> {
-        throw new Error('Method not implemented.');
+    async BuscarPostagemPorId(id: string): Promise<Postagem | null> {
+        return await this.provedor.buscarPorId<Postagem>('postagens', id);
     }
-    BuscarPostagensPorUsuarioId(usuarioId: Postagem['userId']): Promise<Postagem[]> {
+    async BuscarPostagensPorUsuarioId(usuarioId: Postagem['userId']): Promise<Postagem[]> {
+        // return await this.provedor.buscarPorCampo<Postagem>('postagens', 'userId', usuarioId);
         throw new Error('Method not implemented.');
     }
 

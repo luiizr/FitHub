@@ -21,7 +21,7 @@ export class UsuarioService {
       altura: usuarioDto.altura ?? 0,
       idade: usuarioDto.idade ?? 18,
     };
-
+    console.info('Chegando no service', usuario)
     return this.http.post<void>('/api/registrar', usuario);
   }
 

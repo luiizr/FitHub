@@ -9,6 +9,7 @@ export default class RepositorioPostagemPG implements ProvedorDados {
         id?: Identificador
     ): Promise<T> {
         // ✅ Filtrar campos undefined/null para não enviar ao banco
+        console.info('Salvando entidade no PG:', entidade, 'com id:', id);
         const entidadeLimpa: Record<string, unknown> = {};
         Object.keys(entidade).forEach(key => {
             if (entidade[key] !== undefined && entidade[key] !== null) {
@@ -33,7 +34,14 @@ export default class RepositorioPostagemPG implements ProvedorDados {
             return result as T;
         }
     }
-
+    
+    async buscarPorId<T = Record<string, unknown>>(
+        repositorio: string,
+        id: Identificador
+    ): Promise<T | null> {
+        const query = `SELECT * FROM ${repositorio} WHERE id = $1`;
+        return await db.oneOrNone(query, [id]);
+    }
 
     salvarVarios(repositorio: string, entidades: Record<string, unknown>[]): Promise<void> {
         throw new Error("Method not implemented.");
@@ -45,9 +53,6 @@ export default class RepositorioPostagemPG implements ProvedorDados {
         throw new Error("Method not implemented.");
     }
     excluirVarios(repositorio: string, ids: Identificador[]): Promise<void> {
-        throw new Error("Method not implemented.");
-    }
-    buscarPorId<T = Record<string, unknown>>(repositorio: string, id: Identificador): Promise<T | null> {
         throw new Error("Method not implemented.");
     }
     buscarPorIds<T = Record<string, unknown>>(repositorio: string, ids: Identificador[]): Promise<T[]> {

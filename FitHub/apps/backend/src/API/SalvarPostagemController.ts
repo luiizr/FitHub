@@ -1,12 +1,13 @@
-import { Express } from 'express';
+import { Express, Response } from 'express';
 import { SalvarPostagem, Postagem } from '@fit-hub/core';
+import { AuthRequest, verificarToken } from '../middleware/authMiddleware';
 
 export default class SalvarPostagemController {
     constructor(
         servidor: Express,
         cdu: SalvarPostagem,
     ) {
-        servidor.post('/api/salvarPostagem', async (req, resp) => {
+        servidor.post('/api/salvarPostagem', verificarToken, async (req: AuthRequest, res: Response) => {
             try {
                 // ✅ Só inclui campos que existem (não undefined/null)
                 const postagem: any = {
@@ -25,9 +26,10 @@ export default class SalvarPostagemController {
                 // ✅ Não inclui id se for criação - banco gera automaticamente
                 console.info('SalvarPostagemController - postagem recebida:', postagem);
                 const resultado = await cdu.executar(postagem);
-                resp.status(201).json({ message: 'Postagem salva com sucesso', resultado });
+                await cdu.executar(postagem)
+                res.status(201).json({ message: 'Postagem salva com sucesso', resultado });
             } catch (error) {
-                resp.status(500).json({ message: 'Erro ao salvar postagem', error });
+                res.status(500).json({ message: 'Erro ao salvar postagem', error });
             }
         })
     }
