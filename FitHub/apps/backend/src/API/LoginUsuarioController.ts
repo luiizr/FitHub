@@ -21,13 +21,14 @@ export default class LoginUsuarioController {
             }
             
             try {
-                const usuario = await cdu.executar({
-                    email: req.body.email,
-                    senha: req.body.senha
-                })
                 const provedorJwt = new Jwt(process.env.JWT_SECRET)
-
-                res.status(200).send(provedorJwt.gerar(usuario))
+                
+                res.status(200).send({ 
+                    token: provedorJwt.gerar({
+                        id: usuarioExiste.id, 
+                        email: usuarioExiste.email 
+                    })
+                })
             } catch (error) {
                 res.status(401).send({ message: error.message })
             }
