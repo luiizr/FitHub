@@ -2,7 +2,7 @@ import { ProvedorDados, Filtro, Ordenacao, Pagina, ComandoBatch, Identificador }
 import db from './db';
 import { ITask } from 'pg-promise';
 
-export default class ProvedorPostgreSQL implements ProvedorDados {
+export default class RepositorioUsuarioPG implements ProvedorDados {
 
     // === OPERAÇÕES DE ESCRITA ===
 

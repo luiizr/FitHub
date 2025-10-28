@@ -36,3 +36,15 @@ SELECT
 FROM information_schema.columns 
 WHERE table_name = 'usuarios' 
 ORDER BY ordinal_position;
+
+
+CREATE TABLE postagens (
+    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    conteudoEscrito TEXT NOT NULL,
+    conteudoMidia TEXT,
+    userId UUID NOT NULL,
+    dataCriacao TIMESTAMP DEFAULT NOW(),
+    dataAlteracao TIMESTAMP,
+    comentarioId UUID,
+    curtidas INTEGER DEFAULT 0
+);

@@ -1,0 +1,34 @@
+import { Express } from 'express';
+import { SalvarPostagem, Postagem } from '@fit-hub/core';
+
+export default class SalvarPostagemController {
+    constructor(
+        servidor: Express,
+        cdu: SalvarPostagem,
+    ) {
+        servidor.post('/api/salvarPostagem', async (req, resp) => {
+            try {
+                // ✅ Só inclui campos que existem (não undefined/null)
+                const postagem: any = {
+                    conteudoEscrito: req.body.conteudoEscrito,
+                    userId: req.body.userId,
+                };
+                
+                // Campos opcionais - só adiciona se existirem
+                if (req.body.conteudoMidia) postagem.conteudoMidia = req.body.conteudoMidia;
+                if (req.body.dataAlteracao) postagem.dataAlteracao = req.body.dataAlteracao;
+                if (req.body.comentarioId) postagem.comentarioId = req.body.comentarioId;
+                if (req.body.curtidas && req.body.curtidas.length > 0) postagem.curtidas = req.body.curtidas;
+                if (req.body.id) postagem.id = req.body.id;
+                
+                // ✅ Não inclui dataCriacao - banco gera automaticamente
+                // ✅ Não inclui id se for criação - banco gera automaticamente
+                console.info('SalvarPostagemController - postagem recebida:', postagem);
+                const resultado = await cdu.executar(postagem);
+                resp.status(201).json({ message: 'Postagem salva com sucesso', resultado });
+            } catch (error) {
+                resp.status(500).json({ message: 'Erro ao salvar postagem', error });
+            }
+        })
+    }
+}

@@ -1,5 +1,6 @@
 export type { default as ProvedorDados } from './providers/ProvedorDados';
 export { default as ColecaoUsuario } from './db/ColecaoUsuario';
+export { default as ColecaoPostagem } from './db/ColecaoPostagem';
 export type {
     Filtro,
     Ordenacao,

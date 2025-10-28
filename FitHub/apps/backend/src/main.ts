@@ -8,10 +8,10 @@ import RegistrarUsuarioController from './API/RegistrarUsuarioController';
 import LoginUsuarioController from "./API/LoginUsuarioController";
 import UsuarioController from './API/UsuarioController';
 
-import { RegistrarUsuario, LoginUsuario } from '@fit-hub/core';
+import { RegistrarUsuario, LoginUsuario, SalvarPostagem } from '@fit-hub/core';
 import { db, SenhaCripto, ProvedorPostgreSQL } from '@fit-hub/backendAdapters';
-import { ColecaoUsuario } from "@fit-hub/adapters";
-
+import { ColecaoUsuario, ColecaoPostagem } from "@fit-hub/adapters";
+import SalvarPostagemController from "./API/SalvarPostagemController";
 
 /*
 =========================== 
@@ -64,10 +64,14 @@ db.connect().then((connection) => {
 =========================== 
 */
 const provedorPG = new ProvedorPostgreSQL()
-const repoUsuario = new ColecaoUsuario(provedorPG)
 const provCripto = new SenhaCripto()
+
+const repoUsuario = new ColecaoUsuario(provedorPG)
 const cduRegistrarUsuario = new RegistrarUsuario(repoUsuario) // Remove provCripto do caso de uso
 const cduLoginUsuario = new LoginUsuario(repoUsuario)
+
+const repoPostagem = new ColecaoPostagem(provedorPG)
+const cduSalvarPostagem = new SalvarPostagem(repoPostagem)
 
 /*
 =========================== 
@@ -87,3 +91,5 @@ new LoginUsuarioController(app, cduLoginUsuario, provCripto, repoUsuario) // Pas
 */
 
 new UsuarioController(app, repoUsuario)
+
+new SalvarPostagemController(app, cduSalvarPostagem)
