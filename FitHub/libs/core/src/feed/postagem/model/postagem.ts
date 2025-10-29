@@ -1,4 +1,3 @@
-import Comentario from "../../comentario/model/comentario";
 import Curtida from "../../curtida/model/curtida";
 import Usuario from "../../../usuario/model/Usuario";
 
@@ -9,6 +8,5 @@ export default interface Postagem {
     conteudoMidia?: string;
     dataCriacao?: Date;
     dataAlteracao?: Date;
-    comentarioId?: Comentario["id"][];
     curtidas?: Curtida["id"][];
 }

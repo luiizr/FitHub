@@ -42,13 +42,16 @@ export default class RepositorioPostagemPG implements ProvedorDados {
         return await db.oneOrNone(query, [id]);
     }
 
+    async excluir(repositorio: string, id: Identificador): Promise<boolean> {
+        const query = `DELETE FROM ${repositorio} WHERE id = $1`;
+        const result = await db.result(query, [id]);
+        return result.rowCount > 0;
+    }
+    
     salvarVarios(repositorio: string, entidades: Record<string, unknown>[]): Promise<void> {
         throw new Error("Method not implemented.");
     }
     atualizarCampos(repositorio: string, id: Identificador, campos: Record<string, unknown>): Promise<void> {
-        throw new Error("Method not implemented.");
-    }
-    excluir(repositorio: string, id: Identificador): Promise<boolean> {
         throw new Error("Method not implemented.");
     }
     excluirVarios(repositorio: string, ids: Identificador[]): Promise<void> {

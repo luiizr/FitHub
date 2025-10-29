@@ -2,7 +2,7 @@ import { CasoDeUso } from "@fit-hub/utils";
 import Postagem from "../model/postagem";
 import RepositorioPostagem from "../provider/RepositorioPostagem";
 
-export default class CriarPostagem implements CasoDeUso<Postagem, void> {
+export default class SalvarPostagem implements CasoDeUso<Postagem, void> {
     constructor (
         readonly repoPostagem: RepositorioPostagem
     ) {}
@@ -10,6 +10,7 @@ export default class CriarPostagem implements CasoDeUso<Postagem, void> {
     async executar(dados: Postagem): Promise<void> {
         // Verificar se todos os dados estão condizentes
         if (dados.id) {
+            console.log('Postagem seguindo para edição', dados.id)
                 const PostagemExistente = await this.repoPostagem.BuscarPostagemPorId(dados.id)
                     if (!PostagemExistente) {
                         throw new Error("Postagem não encontrada para atualização");
@@ -34,9 +35,9 @@ export default class CriarPostagem implements CasoDeUso<Postagem, void> {
             conteudoEscrito: dados.conteudoEscrito,
         }
         
-        // ✅ Campos opcionais - só adiciona se existirem
         if (dados.conteudoMidia) Postagem.conteudoMidia = dados.conteudoMidia;
-        // ✅ Não inclui dataCriacao - banco gera automaticamente
+        // Não inclui dataCriacao - banco gera automaticamente
+        // Não inclui ID - banco gera automaticamente
 
         // Criar a postagem no repositório, nesse caso, no colecaoPostagem
         await this.repoPostagem.SalvarPostagem(Postagem)

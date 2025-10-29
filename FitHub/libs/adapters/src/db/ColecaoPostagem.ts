@@ -4,6 +4,9 @@ import ProvedorDados from '../providers/ProvedorDados';
 
 export default class ColecaoPostagem implements RepositorioPostagem {
     constructor(private provedor: ProvedorDados) {}
+    ListarPostagens(): Promise<Postagem[]> {
+        throw new Error('Method not implemented.');
+    }
 
     async SalvarPostagem(postagem: Postagem): Promise<void> {
         // ✅ Monta objeto apenas com campos obrigatórios
@@ -18,18 +21,23 @@ export default class ColecaoPostagem implements RepositorioPostagem {
         }
         if (postagem.dataCriacao) dadosPostagem['dataCriacao'] = postagem.dataCriacao;
         if (postagem.dataAlteracao) dadosPostagem['dataAlteracao'] = postagem.dataAlteracao;
-        if (postagem.comentarioId) dadosPostagem['comentarioId'] = postagem.comentarioId;
         if (postagem.curtidas) dadosPostagem['curtidas'] = postagem.curtidas;
         
         // ✅ Se tem id, é update; se não tem, é insert
         if (postagem.id) {
+            console.info(`Atualizando postagem com ID: ${postagem.id}`);
             await this.provedor.salvar('postagens', dadosPostagem, postagem.id);
         } else {
+            console.info('Criando nova postagem');
             await this.provedor.salvar('postagens', dadosPostagem);
         }
     }
-    DeletarPostagem(id: string): Promise<void> {
-        throw new Error('Method not implemented.');
+    async DeletarPostagem(id: string): Promise<void> {
+        const excluir = await this.provedor.excluir('postagens', id);
+        if (excluir) {
+            return;
+        }
+        throw new Error('Erro ao deletar postagem');
     }
     async BuscarPostagemPorId(id: string): Promise<Postagem | null> {
         return await this.provedor.buscarPorId<Postagem>('postagens', id);
