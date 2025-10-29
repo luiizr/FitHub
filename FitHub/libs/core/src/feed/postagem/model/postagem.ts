@@ -3,10 +3,10 @@ import Usuario from "../../../usuario/model/Usuario";
 
 export default interface Postagem {
     id?: string;
-    userId: Usuario["id"];
-    conteudoEscrito: string;
-    conteudoMidia?: string;
-    dataCriacao?: Date;
-    dataAlteracao?: Date;
+    user_id: Usuario["id"];
+    conteudo_escrito: string;
+    conteudo_midia?: string;
+    data_criacao?: Date;
+    data_alteracao?: Date;
     curtidas?: Curtida["id"][];
 }

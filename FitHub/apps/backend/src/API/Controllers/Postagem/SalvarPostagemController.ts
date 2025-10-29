@@ -13,17 +13,17 @@ export default class SalvarPostagemController {
       async (req: AuthRequest, res: Response) => {
         try {
           const postagem: any = {
-            conteudoEscrito: req.body.conteudoEscrito,
-            userId: req.body.userId,
+            conteudo_escrito: req.body.conteudo_escrito,
+            user_id: req.body.user_id,
           };
 
           // Campos opcionais - só adiciona se existirem
-          if (req.body.conteudoMidia)
-            postagem.conteudoMidia = req.body.conteudoMidia;
-          if (req.body.dataAlteracao)
-            postagem.dataAlteracao = req.body.dataAlteracao;
-          if (req.body.comentarioId)
-            postagem.comentarioId = req.body.comentarioId;
+          if (req.body.conteudo_midia)
+            postagem.conteudo_midia = req.body.conteudo_midia;
+          if (req.body.data_alteracao)
+            postagem.data_alteracao = req.body.data_alteracao;
+          if (req.body.comentario_id)
+            postagem.comentario_id = req.body.comentario_id;
           if (req.body.curtidas && req.body.curtidas.length > 0)
             postagem.curtidas = req.body.curtidas;
           if (req.body.id) postagem.id = req.body.id;

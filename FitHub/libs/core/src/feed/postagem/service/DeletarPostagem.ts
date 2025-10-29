@@ -3,7 +3,7 @@ import RepositorioPostagem from "../provider/RepositorioPostagem";
 
 interface DeletarPostagemArgs {
     id: string;
-    userId: string;
+    user_id: string;
 }
 
 export default class DeletarPostagem implements CasoDeUso<DeletarPostagemArgs, void> {
@@ -17,7 +17,8 @@ export default class DeletarPostagem implements CasoDeUso<DeletarPostagemArgs, v
             throw new Error("Postagem não encontrada para exclusão");
         }
         // Valida o usuário para saber se ele é o dono da postagem, caso contrário, ele não pode deletar a postagem
-        if (validarPostagem.userId == dados.userId) {
+        const userid = validarPostagem.user_id
+        if (userid == dados.user_id) {
             await this.repoPostagem.DeletarPostagem(dados.id);
         } else {
             throw new Error("Usuário não autorizado a deletar esta postagem");

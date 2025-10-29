@@ -4,7 +4,7 @@ import Comentario from "../../comentario/model/comentario";
 
 export default interface Curtida {
     id: string;
-    userId: Usuario["id"];
-    postagemId?: Postagem["id"];
-    comentarioId?: Comentario["id"];
+    user_id: Usuario["id"];
+    postagem_id?: Postagem["id"];
+    comentario_id?: Comentario["id"];
 }

@@ -12,7 +12,7 @@ export default class DeletarPostagemController {
       verificarToken,
       async (req: AuthRequest, res: Response) => {
         try {
-          await cdu.executar({ id: req.body.id, userId: req.body.userId });
+          await cdu.executar({ id: req.body.id, user_id: req.body.user_id });
           res.status(200).json({ message: 'Postagem deletada com sucesso' });
         } catch (error) {
           res.status(500).json({ message: 'Erro ao deletar postagem', error });

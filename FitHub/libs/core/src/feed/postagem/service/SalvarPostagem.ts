@@ -18,24 +18,24 @@ export default class SalvarPostagem implements CasoDeUso<Postagem, void> {
             // Atualizar a postagem existente
             const PostagemAtualizada: Postagem = {
                 ...PostagemExistente,
-                userId: dados.userId,
-                ...(dados.conteudoEscrito && { conteudoEscrito: dados.conteudoEscrito }),
-                ...(dados.conteudoMidia && { conteudoMidia: dados.conteudoMidia }),
-                dataAlteracao: new Date(),
+                user_id: dados.user_id,
+                ...(dados.conteudo_escrito && { conteudo_escrito: dados.conteudo_escrito }),
+                ...(dados.conteudo_midia && { conteudo_midia: dados.conteudo_midia }),
+                data_alteracao: new Date(),
             }
-            if (dados.conteudoMidia !== undefined) {
-                PostagemAtualizada.conteudoMidia = dados.conteudoMidia;
+            if (dados.conteudo_midia !== undefined) {
+                PostagemAtualizada.conteudo_midia = dados.conteudo_midia;
             }
             await this.repoPostagem.SalvarPostagem(PostagemAtualizada)
             return;
         }
         // extrair os dados para criar a postagem
         const Postagem: Postagem = {
-            userId: dados.userId,
-            conteudoEscrito: dados.conteudoEscrito,
+            user_id: dados.user_id,
+            conteudo_escrito: dados.conteudo_escrito,
         }
-        
-        if (dados.conteudoMidia) Postagem.conteudoMidia = dados.conteudoMidia;
+
+        if (dados.conteudo_midia) Postagem.conteudo_midia = dados.conteudo_midia;
         // Não inclui dataCriacao - banco gera automaticamente
         // Não inclui ID - banco gera automaticamente
 

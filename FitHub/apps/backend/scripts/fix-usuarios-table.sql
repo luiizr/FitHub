@@ -40,11 +40,11 @@ ORDER BY ordinal_position;
 
 CREATE TABLE postagens (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    conteudoEscrito TEXT NOT NULL,
-    conteudoMidia TEXT,
-    userId UUID NOT NULL,
-    dataCriacao TIMESTAMP DEFAULT NOW(),
-    dataAlteracao TIMESTAMP,
-    comentarioId UUID,
+    conteudo_escrito TEXT NOT NULL,
+    conteudo_midia TEXT,
+    user_id UUID NOT NULL,
+    data_criacao TIMESTAMP DEFAULT NOW(),
+    data_alteracao TIMESTAMP,
+    comentario_id UUID,
     curtidas INTEGER DEFAULT 0
 );

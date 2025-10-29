@@ -7,3 +7,4 @@ export type { default as Postagem } from './feed/postagem/model/postagem';
 export type { default as RepositorioPostagem } from './feed/postagem/provider/RepositorioPostagem';
 export { default as SalvarPostagem } from './feed/postagem/service/SalvarPostagem';
 export { default as DeletarPostagem } from './feed/postagem/service/DeletarPostagem';
+export { default as ListarPostagens } from './feed/postagem/service/ListarPostagens';

@@ -10,9 +10,10 @@ import UsuarioController from './API/Controllers/Usuario/UsuarioController';
 import SalvarPostagemController from './API/Controllers/Postagem/SalvarPostagemController';
 import DeletarPostagemController from './API/Controllers/Postagem/DeletarPostagemController';
 
-import { RegistrarUsuario, LoginUsuario, SalvarPostagem, DeletarPostagem } from '@fit-hub/core';
+import { RegistrarUsuario, LoginUsuario, SalvarPostagem, DeletarPostagem, ListarPostagens } from '@fit-hub/core';
 import { db, SenhaCripto, ProvedorPostgreSQL } from '@fit-hub/backendAdapters';
 import { ColecaoUsuario, ColecaoPostagem } from '@fit-hub/adapters';
+import ListarPostagensController from './API/Controllers/Postagem/ListarPostagensController';
 
 /*
 =========================== 
@@ -85,6 +86,7 @@ const cduLoginUsuario = new LoginUsuario(repoUsuario);
 
 const cduSalvarPostagem = new SalvarPostagem(repoPostagem);
 const cduDeletarPostagem = new DeletarPostagem(repoPostagem);
+const cduListarPostagens = new ListarPostagens(repoPostagem)
 
 /*
 =========================== 
@@ -107,3 +109,5 @@ new UsuarioController(app, repoUsuario);
 new SalvarPostagemController(app, cduSalvarPostagem);
 
 new DeletarPostagemController(app, cduDeletarPostagem);
+
+new ListarPostagensController(app, cduListarPostagens)

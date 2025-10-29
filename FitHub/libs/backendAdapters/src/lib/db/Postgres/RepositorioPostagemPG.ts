@@ -39,13 +39,21 @@ export default class RepositorioPostagemPG implements ProvedorDados {
         id: Identificador
     ): Promise<T | null> {
         const query = `SELECT * FROM ${repositorio} WHERE id = $1`;
-        return await db.oneOrNone(query, [id]);
+        const result = await db.oneOrNone(query, [id]);
+        console.info('Buscando postagem por ID no bd: ', result);
+        return result;
     }
 
     async excluir(repositorio: string, id: Identificador): Promise<boolean> {
+        console.info('Excluindo postagem do banco de dados, ID:', id);
         const query = `DELETE FROM ${repositorio} WHERE id = $1`;
         const result = await db.result(query, [id]);
         return result.rowCount > 0;
+    }
+    
+    buscarTodos<T = Record<string, unknown>>(repositorio: string, ordenacao?: Ordenacao): Promise<T[]> {
+        const query = `SELECT * FROM ${repositorio}`;
+        return db.manyOrNone<T>(query);
     }
     
     salvarVarios(repositorio: string, entidades: Record<string, unknown>[]): Promise<void> {
@@ -58,9 +66,6 @@ export default class RepositorioPostagemPG implements ProvedorDados {
         throw new Error("Method not implemented.");
     }
     buscarPorIds<T = Record<string, unknown>>(repositorio: string, ids: Identificador[]): Promise<T[]> {
-        throw new Error("Method not implemented.");
-    }
-    buscarTodos<T = Record<string, unknown>>(repositorio: string, ordenacao?: Ordenacao): Promise<T[]> {
         throw new Error("Method not implemented.");
     }
     buscarComFiltros<T = Record<string, unknown>>(repositorio: string, filtros: Filtro[], ordenacao?: Ordenacao, limite?: number): Promise<T[]> {
